@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from decouple import config, Csv
 from .forms import PotatoForm
+from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
@@ -21,3 +22,16 @@ def potato_view(request):
         form = PotatoForm()
 
     return render(request, 'potato.html', {'form': form})
+
+
+def tomato_view(request):
+    context = {}
+    if request.method == 'POST':
+        # Extract the data directly from POST and add it to the context
+        context['tomato_name'] = request.POST.get('tomato_name', '')
+        context['tomato_description'] = request.POST.get('tomato_description', '')
+        context['tomato_number'] = request.POST.get('tomato_number', 0)
+        context['is_tomato'] = request.POST.get('is_tomato', 'off') == 'on'
+    
+    return render(request, 'tomato.html', context)
+
