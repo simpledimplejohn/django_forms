@@ -79,4 +79,5 @@ ehthumbs.db
 *.sublime-workspace
 *.sublime-project
 
+.env
 # End of file
